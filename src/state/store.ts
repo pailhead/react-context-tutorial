@@ -1,5 +1,6 @@
-import { ColorType, Shape, State, Vec2 } from './types'
 import EventEmitter from 'eventemitter3'
+import { createEntityProps, DEFAULT_STATE } from './state'
+import { ColorType, Shape, State, Vec2 } from '../types'
 
 export const setEntityColor = (id: string, color: ColorType) => ({
   type: 'setEntityColor' as const,
@@ -40,31 +41,6 @@ export const setDebugStateVisible = (stateVisible: boolean) => ({
   type: 'setDebugStateVisible' as const,
   payload: { stateVisible },
 })
-
-const _createEntity = () => ({
-  id: crypto.randomUUID(),
-  position: {
-    x: (Math.random() * 2 - 1) * 300,
-    y: (Math.random() * 2 - 1) * 300,
-  },
-  color: {
-    r: Math.round(Math.random() * 255),
-    g: Math.round(Math.random() * 255),
-    b: Math.round(Math.random() * 255),
-  },
-  isMoving: false,
-  shape: Math.random() > 0.5 ? Shape.Circle : Shape.Square,
-})
-
-const DEFAULT_STATE: State = {
-  entities: [],
-  highlightedEntity: null,
-  selectedEntity: null,
-  debug: {
-    stateVisible: false,
-    highlightActive: false,
-  },
-}
 
 class Store extends EventEmitter<{
   stateChanged: State
@@ -119,7 +95,7 @@ class Store extends EventEmitter<{
       case 'createEntity':
         this._state = {
           ...this._state,
-          entities: [...this._state.entities, _createEntity()],
+          entities: [...this._state.entities, createEntityProps()],
         }
         break
       case 'deleteEntity':

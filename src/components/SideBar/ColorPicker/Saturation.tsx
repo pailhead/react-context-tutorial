@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import { ColorType } from '../../types'
+import { ColorType } from '../../../types'
 import convert from 'color-convert'
 import { useRef } from 'react'
 

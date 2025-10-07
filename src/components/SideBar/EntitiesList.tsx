@@ -1,8 +1,10 @@
+import { useCallback } from 'react'
+
 import { EntitiesListItem } from './EntitiesListItem'
-import { ColorType, Shape, State } from '../types'
-import { MyBox } from '../MyBox'
-import { memo, useCallback } from 'react'
-import { myMemo } from '../myMemo'
+
+import { ColorType, Shape, State } from '../../types'
+import { MyBox } from '../../common/MyBox'
+import { myMemo } from '../../common/myMemo'
 
 const EntitiesListInner = (props: {
   state: State
@@ -22,8 +24,8 @@ const EntitiesListInner = (props: {
       name="EntitiesList"
       highlightColor="cyan"
       highlightSize={3}
-      overflowY="scroll"
-      height="100%"
+      overflowY="auto"
+      flexGrow="1"
       onMouseDown={() => {
         props.onEntitySelected(null)
       }}

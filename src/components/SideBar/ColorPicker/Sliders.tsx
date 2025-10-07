@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react'
-import { ColorType } from '../../types'
+import { ColorType } from '../../../types'
 import { ColorSlider } from './ColorSlider'
 
 export const Sliders = (props: {

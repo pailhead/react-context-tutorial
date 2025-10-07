@@ -1,9 +1,9 @@
 import { Collapsible } from '@chakra-ui/react'
-import { EntityProps, ColorType, Shape } from '../types'
+import { EntityProps, ColorType, Shape } from '../../types'
 import { EntityListItemHeader } from './EntitiesListItemHeader'
 import { EntitiesListItemMenu } from './EntitiesListItemMenu'
-import { MyBox } from '../MyBox'
-import { myMemo } from '../myMemo'
+import { MyBox } from '../../common/MyBox'
+import { myMemo } from '../../common/myMemo'
 
 const EntitiesListItemInner = (props: {
   entity: EntityProps

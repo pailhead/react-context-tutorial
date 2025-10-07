@@ -1,8 +1,8 @@
 import { EntitiesList } from './EntitiesList'
-import { ColorType, Shape, State } from '../types'
+import { ColorType, Shape, State } from '../../types'
 import { EntitiesHeader } from './EntitiesHeader'
-import { MyBox } from '../MyBox'
-import { myMemo } from '../myMemo'
+import { MyBox } from '../../common/MyBox'
+import { myMemo } from '../../common/myMemo'
 
 const SideBarInner = (props: {
   state: State
@@ -21,6 +21,7 @@ const SideBarInner = (props: {
     height="100%"
     userSelect="none"
     flexDir="column"
+    display="flex"
   >
     <EntitiesHeader
       onCreateEntity={props.onCreateEntity}

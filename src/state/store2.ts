@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { ColorType, Shape, State, Vec2 } from './types'
 import EventEmitter from 'eventemitter3'
+import { DEFAULT_STATE } from './state'
+import { Shape, State, ColorType, Vec2 } from '../types'
 
 const _createEntity = () => ({
   id: crypto.randomUUID(),
@@ -16,16 +16,6 @@ const _createEntity = () => ({
   isMoving: false,
   shape: Math.random() > 0.5 ? Shape.Circle : Shape.Square,
 })
-
-const DEFAULT_STATE: State = {
-  entities: [],
-  highlightedEntity: null,
-  selectedEntity: null,
-  debug: {
-    stateVisible: false,
-    highlightActive: false,
-  },
-}
 
 class Store2 extends EventEmitter {
   private _state: State = DEFAULT_STATE
@@ -113,29 +103,3 @@ class Store2 extends EventEmitter {
 }
 
 export const store = new Store2()
-
-const SYMBOL = Symbol('store2')
-export const useSelector = <T>(
-  selector: (state: State) => T,
-  eqFn?: (a: T, b: T) => boolean,
-): T => {
-  const [value, setValue] = useState(selector(store.getState()))
-  const stableRef = useRef({ selector, eqFn })
-  const prevValueRef = useRef(SYMBOL as T)
-
-  useEffect(() => {
-    const onStateChanged = (state: State) => {
-      const prevValue = prevValueRef.current
-      const { selector, eqFn } = stableRef.current
-      const newValue = selector(state)
-      if (eqFn?.(prevValue, newValue) ?? prevValue === newValue) return
-      prevValueRef.current = newValue
-      setValue(newValue)
-    }
-    store.on('stateChanged', onStateChanged)
-    return () => {
-      store.off('stateChanged', onStateChanged)
-    }
-  }, [])
-  return value
-}

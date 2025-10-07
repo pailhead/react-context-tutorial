@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react'
-import { Vec2, State } from '../types'
-import { MyBox } from '../MyBox'
-import { StateViewer } from '../common/StateView'
+import { Vec2, State } from '../../types'
+import { MyBox } from '../../common/MyBox'
+import { StateViewer } from '../../common/StateView'
 import { CanvasItem } from './CanvasItem'
-import { myMemo } from '../myMemo'
+import { myMemo } from '../../common/myMemo'
 
 const CanvasInner = (props: {
   state: State
@@ -22,6 +22,7 @@ const CanvasInner = (props: {
       height="100%"
       overflow="hidden"
       userSelect="none"
+      onMouseDown={() => props.setSelectedEntity(null)}
     >
       <Box position="absolute" top="50%" left="50%">
         {props.state.entities.map((entity) => (

@@ -1,9 +1,9 @@
 import { VStack } from '@chakra-ui/react'
-import { EntityProps, ColorType, Shape } from '../types'
+import { EntityProps, ColorType, Shape } from '../../types'
 import { ShapeControls } from './ShapeControls'
-import { ColorPicker } from '../common/ColorPicker/ColorPicker'
+import { ColorPicker } from './ColorPicker/ColorPicker'
 import { useCallback } from 'react'
-import { myMemo } from '../myMemo'
+import { myMemo } from '../../common/myMemo'
 
 export const EntitiesListItemMenuInner = (props: {
   entity: EntityProps

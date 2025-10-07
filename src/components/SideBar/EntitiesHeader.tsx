@@ -1,7 +1,8 @@
 import { Icon, Text } from '@chakra-ui/react'
 import { CiSquarePlus } from 'react-icons/ci'
-import { MyBox } from '../MyBox'
-import { myMemo } from '../myMemo'
+
+import { MyBox } from '../../common/MyBox'
+import { myMemo } from '../../common/myMemo'
 
 const EntitiesHeaderInner = (props: {
   onCreateEntity: () => void

@@ -1,10 +1,10 @@
 import { Box, Flex } from '@chakra-ui/react'
-import { ColorType } from '../../types'
+import { ColorType } from '../../../types'
 import { Hue } from './Hue'
 import { Saturation } from './Saturation'
 import { Sliders } from './Sliders'
-import { MyBox } from '../../MyBox'
-import { myMemo } from '../../myMemo'
+import { MyBox } from '../../../common/MyBox'
+import { myMemo } from '../../../common/myMemo'
 
 export const ColorPicker2 = (props: {
   rgb: ColorType

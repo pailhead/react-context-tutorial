@@ -1,5 +1,5 @@
-import { Shape } from '../types'
-import { MyBox } from '../MyBox'
+import { Shape } from '../../types'
+import { MyBox } from '../../common/MyBox'
 import { ToggleButton } from './ToggleButton'
 
 export const ShapeControls = (props: {

@@ -1,10 +1,10 @@
 import { Box, Flex } from '@chakra-ui/react'
-import { SideBar } from './SideBar/SideBar'
-import { Footer } from './Footer'
-import { MyBox } from './MyBox'
-import { HighlightContextProvider } from './HiglightContext'
-import { useAppState } from './useAppState'
-import { Canvas } from './Canvas/Canvas'
+import { SideBar } from './components/SideBar/SideBar'
+import { Footer } from './components/Footer/Footer'
+import { Canvas } from './components/Canvas/Canvas'
+import { MyBox } from './common/MyBox'
+import { useAppState } from './state/useAppState'
+import { HighlightContextProvider } from './common/HighlightContextProvider'
 
 export const App = () => {
   const {

@@ -1,31 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { State, ColorType, Vec2, Shape } from './types'
+import { State, ColorType, Vec2, Shape } from '../types'
 import debounce from 'debounce'
-
-const DEFAULT_STATE: State = {
-  entities: [],
-  highlightedEntity: null,
-  selectedEntity: null,
-  debug: {
-    stateVisible: false,
-    highlightActive: false,
-  },
-}
-
-const _createEntity = () => ({
-  id: crypto.randomUUID(),
-  position: {
-    x: (Math.random() * 2 - 1) * 300,
-    y: (Math.random() * 2 - 1) * 300,
-  },
-  color: {
-    r: Math.round(Math.random() * 255),
-    g: Math.round(Math.random() * 255),
-    b: Math.round(Math.random() * 255),
-  },
-  isMoving: false,
-  shape: Math.random() > 0.5 ? Shape.Circle : Shape.Square,
-})
+import { createEntityProps, DEFAULT_STATE } from './state'
 
 const localState = JSON.parse(
   localStorage.getItem('context-playground-state') ?? null,
@@ -70,7 +46,7 @@ export const useAppState = () => {
     const createEntity = () => {
       setState((prev) => ({
         ...prev,
-        entities: [...prev.entities, _createEntity()],
+        entities: [...prev.entities, createEntityProps()],
       }))
     }
 
@@ -127,8 +103,5 @@ export const useAppState = () => {
     }
   }, [])
 
-  return {
-    state,
-    ...setters,
-  }
+  return { state, ...setters }
 }

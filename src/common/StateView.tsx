@@ -97,7 +97,7 @@ const ObjectContext = React.createContext({
   skipHighlight: false,
 })
 
-export const ObjectContextProvider = ({
+const ObjectContextProvider = ({
   children,
   skipHighlight,
 }: PropsWithChildren<{
@@ -106,7 +106,7 @@ export const ObjectContextProvider = ({
 }>) => {
   const nearestAncestor = React.useContext(ObjectContext)
   const nextDepth = nearestAncestor.depth + 1
-  const mergedSkip = nearestAncestor.skipHighlight || !!skipHighlight // <<< merge!
+  const mergedSkip = nearestAncestor.skipHighlight || !!skipHighlight
   const nextValue = useMemo(
     () => ({ depth: nextDepth, skipHighlight: mergedSkip }),
     [nextDepth, mergedSkip],
