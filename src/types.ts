@@ -21,5 +21,8 @@ export type State = {
   entities: EntityProps[]
   highlightedEntity: string | null
   selectedEntity: string | null
-  movingEntity: string | null
+  debug: {
+    stateVisible: boolean
+    highlightActive: boolean
+  }
 }

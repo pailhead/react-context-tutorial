@@ -2,9 +2,8 @@ import { Box, Flex } from '@chakra-ui/react'
 import { SideBar } from './SideBar/SideBar'
 import { Footer } from './Footer'
 import { MyBox } from './MyBox'
-import { HighlightContext } from './HiglightContext'
-import { useSetState } from './useSetState'
-import { useMemo } from 'react'
+import { HighlightContextProvider } from './HiglightContext'
+import { useAppState } from './useAppState'
 import { Canvas } from './Canvas/Canvas'
 
 export const App = () => {
@@ -12,16 +11,16 @@ export const App = () => {
     state,
     setEntityColor,
     setEntityPosition,
-    setEntityIsMoving,
     setEntityShape,
     createEntity,
     deleteEntity,
     setHover,
     setSelectedEntity,
-  } = useSetState()
-  const highlightContextValue = useMemo(() => ({ active: false }), [])
+    setDebugHighlightActive,
+    setDebugStateVisible,
+  } = useAppState()
   return (
-    <HighlightContext.Provider value={highlightContextValue}>
+    <HighlightContextProvider active={state.debug.highlightActive}>
       <MyBox
         name="App"
         height="100vh"
@@ -46,13 +45,16 @@ export const App = () => {
               state={state}
               onHoverChanged={setHover}
               setEntityPosition={setEntityPosition}
-              setIsEntityMoving={setEntityIsMoving}
               setSelectedEntity={setSelectedEntity}
             />
           </Box>
         </Flex>
-        <Footer highlightedEntity={state.highlightedEntity} />
+        <Footer
+          state={state}
+          onHighlightChange={setDebugHighlightActive}
+          onStateVisibleChange={setDebugStateVisible}
+        />
       </MyBox>
-    </HighlightContext.Provider>
+    </HighlightContextProvider>
   )
 }

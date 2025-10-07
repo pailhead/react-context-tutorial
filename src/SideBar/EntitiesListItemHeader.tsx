@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Icon, Text } from '@chakra-ui/react'
 import { CiTrash } from 'react-icons/ci'
 
 export const EntityListItemHeader = (props: {
@@ -27,12 +27,14 @@ export const EntityListItemHeader = (props: {
     onMouseLeave={props.onMouseLeave}
   >
     <Text ml="2"> {props.label}</Text>
-    <CiTrash
-      onClick={(e) => {
-        e.stopPropagation()
-        props.onClickDelete()
-      }}
-    />
+    <Icon _hover={{ color: 'cyan.400' }}>
+      <CiTrash
+        onClick={(e) => {
+          e.stopPropagation()
+          props.onClickDelete()
+        }}
+      />
+    </Icon>
   </Flex>
 )
 EntityListItemHeader.displayName = 'EntityListItemHeader'

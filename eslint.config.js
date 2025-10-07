@@ -22,6 +22,7 @@ export default tseslint.config(
       globals: globals.browser,
     },
     plugins: {
+      '@typescript-eslint': tseslint.plugin,
       prettier: prettierPlugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
@@ -41,12 +42,12 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-      'no-unused-vars': [
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
         'warn',
         {
-          args: 'none', // Don't warn for unused function arguments
-          vars: 'all', // Still warn for unused variables
-          argsIgnorePattern: '^_', // Optionally ignore arguments starting with _
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
         },
       ],
     },

@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Icon, Text } from '@chakra-ui/react'
 import { CiSquarePlus } from 'react-icons/ci'
 import { MyBox } from '../MyBox'
 import { myMemo } from '../myMemo'
@@ -20,11 +20,14 @@ const EntitiesHeaderInner = (props: {
     fontWeight="bold"
     justifyContent="space-between"
     display="flex"
+    alignItems="center"
   >
     <Text fontSize="lg" fontWeight="bold">
       Entities: {props.count}
     </Text>
-    <CiSquarePlus cursor="pointer" onClick={props.onCreateEntity} />
+    <Icon _hover={{ color: 'cyan.400' }}>
+      <CiSquarePlus cursor="pointer" onClick={props.onCreateEntity} />
+    </Icon>
   </MyBox>
 )
 

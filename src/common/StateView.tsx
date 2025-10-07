@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import { State } from './types'
+import { State } from '../types'
 import { PropsWithChildren, useLayoutEffect, useMemo, useRef } from 'react'
 import React from 'react'
 import { keyframes } from '@emotion/react'

@@ -12,10 +12,10 @@ export const ColorSlider = (props: {
     value={[props.value]}
   >
     <Slider.Control>
-      <Slider.Track bg="gray.700">
+      <Slider.Track bg="gray.700" cursor="pointer">
         <Slider.Range bg={props.color} />
       </Slider.Track>
-      <Slider.Thumbs>
+      <Slider.Thumbs cursor="grab">
         <Slider.DraggingIndicator />
         <Slider.HiddenInput />
       </Slider.Thumbs>
