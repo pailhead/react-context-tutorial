@@ -15,12 +15,16 @@ const CanvasItemInner = (
 ) => {
   const { setSelectedEntity, onHoverChanged, onEntityMove, id, position } =
     props
-  const { onMouseDown, ref } = useMouseDown(
-    id,
-    position,
-    setSelectedEntity,
-    onEntityMove,
+  const onClick = useCallback(() => {
+    setSelectedEntity(id)
+  }, [id, setSelectedEntity])
+  const onDrag = useCallback(
+    (newPosition: Vec2) => {
+      onEntityMove(id, newPosition)
+    },
+    [id, onEntityMove],
   )
+  const { onMouseDown, ref } = useMouseDown(id, position, onClick, onDrag)
   const { r, g, b } = props.color
   const bg = `rgb(${r}, ${g}, ${b})`
   return (
@@ -60,26 +64,33 @@ export const CanvasItem = myMemo(CanvasItemInner, true)
 const useMouseDown = (
   id: string,
   position: Vec2,
-  setSelectedEntity: (id: string) => void,
-  onEntityMove: (id: string, position: Vec2) => void,
+  onClick: () => void,
+  onDrag: (position: Vec2) => void,
 ) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const onMouseDown = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation()
       if (!ref.current) return
+      //capture pointer and set didMove flag
       ref.current.setPointerCapture(1)
       let didMove = false
+
+      //if didnt move fire the click event
+      //cleanup the listeners
       const onMouseUp = () => {
         if (!didMove) {
-          setSelectedEntity(id)
+          onClick()
         }
         document.removeEventListener('mouseup', onMouseUp)
         document.removeEventListener('mousemove', onMouseMove)
         ref.current.releasePointerCapture(1)
       }
+      //start tracking the mouse move
       let currentPosition: Vec2 = { ...position }
       let [prevX, prevY] = [e.clientX, e.clientY]
+
+      //update position
       const onMouseMove = (moveEvent: MouseEvent) => {
         didMove = true
         const [currentX, currentY] = [moveEvent.clientX, moveEvent.clientY]
@@ -91,12 +102,13 @@ const useMouseDown = (
           x: currentPosition.x + deltaX,
           y: currentPosition.y + deltaY,
         }
-        onEntityMove(id, currentPosition)
+        // onEntityMove(id, currentPosition)
+        onDrag(currentPosition)
       }
       document.addEventListener('mouseup', onMouseUp)
       document.addEventListener('mousemove', onMouseMove)
     },
-    [position, setSelectedEntity, id, onEntityMove],
+    [position, onClick, onDrag],
   )
   return { onMouseDown, ref }
 }

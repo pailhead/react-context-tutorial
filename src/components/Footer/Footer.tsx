@@ -6,6 +6,7 @@ import { FooterCell } from './FooterCell'
 import { myMemo } from '../../common/myMemo'
 import { State } from '../../types'
 import { InfoLabel } from './InfoLabel'
+import { MyBox } from '../../common/MyBox'
 
 const FooterInner = (props: {
   state: State
@@ -13,7 +14,15 @@ const FooterInner = (props: {
   onStateVisibleChange: (checked: boolean) => void
 }) => {
   return (
-    <Flex bg="gray.700" flexShrink="0" color="gray.400">
+    <MyBox
+      name="SideBar"
+      highlightColor="yellow"
+      highlightSize={8}
+      bg="gray.700"
+      flexShrink="0"
+      color="gray.400"
+      display="flex"
+    >
       <FooterCell>
         <SwitchWithLabel
           value={props.state.debug.highlightActive}
@@ -40,7 +49,7 @@ const FooterInner = (props: {
           value={props.state.selectedEntity?.substring(0, 4) ?? 'none'}
         />
       </FooterCell>
-    </Flex>
+    </MyBox>
   )
 }
 FooterInner.displayName = 'Footer'

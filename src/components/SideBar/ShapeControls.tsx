@@ -1,8 +1,9 @@
 import { Shape } from '../../types'
 import { MyBox } from '../../common/MyBox'
 import { ToggleButton } from './ToggleButton'
+import { myMemo } from '../../common/myMemo'
 
-export const ShapeControls = (props: {
+const ShapeControlsInner = (props: {
   shape: Shape
   onShapeChange: (shape: Shape) => void
 }) => (
@@ -27,4 +28,6 @@ export const ShapeControls = (props: {
     </ToggleButton>
   </MyBox>
 )
-ShapeControls.displayName = 'ShapeControls'
+ShapeControlsInner.displayName = 'ShapeControls'
+
+export const ShapeControls = myMemo(ShapeControlsInner, true)
