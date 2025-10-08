@@ -14,7 +14,6 @@ export const useAppState = () => {
     debouncedSaveState(state)
   }, [state])
 
-  //memoize these
   const setEntityColor = (id: string, color: ColorType) =>
     setState((prev) => ({
       ...prev,
@@ -85,6 +84,15 @@ export const useAppState = () => {
       },
     }))
   }
+  const setDebugStateViewMaxDepth = (stateViewMaxDepth: number) => {
+    setState((prev) => ({
+      ...prev,
+      debug: {
+        ...prev.debug,
+        stateViewMaxDepth,
+      },
+    }))
+  }
 
   return {
     state,
@@ -97,5 +105,6 @@ export const useAppState = () => {
     setSelectedEntity,
     setDebugHighlightActive,
     setDebugStateVisible,
+    setDebugStateViewMaxDepth,
   }
 }

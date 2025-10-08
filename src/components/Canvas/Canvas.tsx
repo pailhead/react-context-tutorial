@@ -15,7 +15,7 @@ const CanvasInner = (props: {
     <MyBox
       name="Canvas"
       highlightColor="yellow"
-      highlightSize={2}
+      highlightSize={4}
       boxShadow="inset 0 0 10px black"
       position="relative"
       width="100%"

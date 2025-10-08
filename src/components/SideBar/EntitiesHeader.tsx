@@ -11,7 +11,7 @@ const EntitiesHeaderInner = (props: {
   <MyBox
     name="EntitiesHeader"
     highlightColor="cyan"
-    highlightSize={3}
+    highlightSize={6}
     borderBottom="1px solid"
     borderColor="black"
     p="2"

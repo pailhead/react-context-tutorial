@@ -23,7 +23,7 @@ const EntitiesListInner = (props: {
     <MyBox
       name="EntitiesList"
       highlightColor="cyan"
-      highlightSize={3}
+      highlightSize={6}
       overflowY="auto"
       flexGrow="1"
       onMouseDown={() => {

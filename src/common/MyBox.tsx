@@ -15,30 +15,25 @@ type Props = {
 
 export const MyBox = forwardRef<HTMLDivElement, PropsWithChildren<Props>>(
   (props, ref) => {
-    const { active } = React.useContext(HighlightContext)
-
-    if (!active) {
-      return (
-        <Box ref={ref} {...props}>
-          {props.children}
-        </Box>
-      )
-    }
+    const context = React.useContext(HighlightContext)
 
     return (
-      <Box ref={ref} {...props} position="relative">
+      <Box ref={ref} position="relative" {...props}>
         {props.children}
-        <Box
-          key={Date.now()}
-          position="absolute"
-          inset={0}
-          pointerEvents="none"
-          boxShadow={`inset 0 0 0px ${props.highlightSize ?? 2}px ${props.highlightColor ?? 'red'}`}
-          animation={`${fadeOut} 1s ease-out forwards`}
-          borderRadius="inherit"
-          zIndex={1}
-        />
+        {context.active && (
+          <Box
+            key={Date.now()}
+            position="absolute"
+            inset={0}
+            pointerEvents="none"
+            boxShadow={`inset 0 0 0px ${props.highlightSize ?? 2}px ${props.highlightColor ?? 'red'}`}
+            animation={`${fadeOut} 1.5s ease-in-out forwards`}
+            borderRadius="inherit"
+            zIndex={1}
+          />
+        )}
       </Box>
     )
   },
 )
+MyBox.displayName = 'MyBox'

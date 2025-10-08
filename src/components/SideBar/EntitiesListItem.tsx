@@ -21,8 +21,8 @@ const EntitiesListItemInner = (props: {
   return (
     <MyBox
       name="EntitiesListItem"
-      highlightColor="cyan"
-      highlightSize={3}
+      highlightColor="green"
+      highlightSize={8}
       onMouseDown={(e) => {
         e.stopPropagation()
       }}

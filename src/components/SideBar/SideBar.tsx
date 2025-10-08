@@ -16,7 +16,7 @@ const SideBarInner = (props: {
   <MyBox
     name="SideBar"
     highlightColor="yellow"
-    highlightSize={2}
+    highlightSize={4}
     width="250px"
     height="100%"
     userSelect="none"

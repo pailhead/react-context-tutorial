@@ -18,6 +18,7 @@ export const App = () => {
     setSelectedEntity,
     setDebugHighlightActive,
     setDebugStateVisible,
+    setDebugStateViewMaxDepth,
   } = useAppState()
   return (
     <HighlightContextProvider active={state.debug.highlightActive}>
@@ -51,6 +52,7 @@ export const App = () => {
         </Flex>
         <Footer
           state={state}
+          onStateMaxDepthChange={setDebugStateViewMaxDepth}
           onHighlightChange={setDebugHighlightActive}
           onStateVisibleChange={setDebugStateVisible}
         />

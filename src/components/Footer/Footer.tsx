@@ -5,22 +5,36 @@ import { myMemo } from '../../common/myMemo'
 import { State } from '../../types'
 import { InfoLabel } from './InfoLabel'
 import { MyBox } from '../../common/MyBox'
+import { Spinner } from './Spinner'
 
 const FooterInner = (props: {
   state: State
   onHighlightChange: (checked: boolean) => void
   onStateVisibleChange: (checked: boolean) => void
+  onStateMaxDepthChange: (value: number) => void
 }) => {
   return (
     <MyBox
       name="SideBar"
       highlightColor="yellow"
-      highlightSize={8}
+      highlightSize={4}
       bg="gray.700"
       flexShrink="0"
       color="gray.400"
       display="flex"
     >
+      <FooterCell>
+        <InfoLabel
+          label="Highlighted entity"
+          value={props.state.highlightedEntity?.substring(0, 4) ?? 'none'}
+        />
+      </FooterCell>
+      <FooterCell>
+        <InfoLabel
+          label="Selected entity"
+          value={props.state.selectedEntity?.substring(0, 4) ?? 'none'}
+        />
+      </FooterCell>
       <FooterCell>
         <SwitchWithLabel
           value={props.state.debug.highlightActive}
@@ -35,18 +49,14 @@ const FooterInner = (props: {
           onChange={props.onStateVisibleChange}
         />
       </FooterCell>
-      <FooterCell>
-        <InfoLabel
-          label="Highlighted entity"
-          value={props.state.highlightedEntity?.substring(0, 4) ?? 'none'}
-        />
-      </FooterCell>
-      <FooterCell>
-        <InfoLabel
-          label="Selected entity"
-          value={props.state.selectedEntity?.substring(0, 4) ?? 'none'}
-        />
-      </FooterCell>
+      {props.state.debug.stateVisible && (
+        <FooterCell>
+          <Spinner
+            value={props.state.debug.stateViewMaxDepth}
+            onChange={props.onStateMaxDepthChange}
+          />
+        </FooterCell>
+      )}
     </MyBox>
   )
 }
