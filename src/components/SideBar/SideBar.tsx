@@ -7,16 +7,16 @@ import { myMemo } from '../../common/myMemo'
 const SideBarInner = (props: {
   state: State
   onCreateEntity: () => void
-  onColorChange: (id: string, color: ColorType) => void
-  onShapeChange: (id: string, shape: Shape) => void
+  onEntityColorChange: (id: string, color: ColorType) => void
+  onEntityShapeChange: (id: string, shape: Shape) => void
   onDeleteEntity: (id: string) => void
-  onHoverChanged: (id: string | null) => void
-  onEntitySelected: (id: string | null) => void
+  onEntityHover: (id: string | null) => void
+  onEntitySelection: (id: string | null) => void
 }) => (
   <MyBox
     name="SideBar"
     highlightColor="yellow"
-    highlightSize={2}
+    highlightSize={4}
     width="250px"
     height="100%"
     userSelect="none"

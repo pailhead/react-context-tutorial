@@ -24,5 +24,8 @@ export type State = {
   debug: {
     stateVisible: boolean
     highlightActive: boolean
+    stateViewMaxDepth: number
+    show3D: boolean
+    wobbleAll: boolean
   }
 }

@@ -1,5 +1,3 @@
-import { useCallback } from 'react'
-
 import { EntitiesListItem } from './EntitiesListItem'
 
 import { ColorType, Shape, State } from '../../types'
@@ -8,36 +6,29 @@ import { myMemo } from '../../common/myMemo'
 
 const EntitiesListInner = (props: {
   state: State
-  onColorChange: (id: string, color: ColorType) => void
-  onShapeChange: (id: string, shape: Shape) => void
+  onEntityColorChange: (id: string, color: ColorType) => void
+  onEntityShapeChange: (id: string, shape: Shape) => void
   onDeleteEntity: (id: string) => void
-  onHoverChanged: (id: string | null) => void
-  onEntitySelected: (id: string | null) => void
+  onEntityHover: (id: string | null) => void
+  onEntitySelection: (id: string | null) => void
 }) => {
-  const { onEntitySelected } = props
-  const onSetOpen = useCallback(
-    (id: string | null) => onEntitySelected(id),
-    [onEntitySelected],
-  )
   return (
     <MyBox
       name="EntitiesList"
       highlightColor="cyan"
-      highlightSize={3}
+      highlightSize={6}
       overflowY="auto"
       flexGrow="1"
-      onMouseDown={() => {
-        props.onEntitySelected(null)
-      }}
+      onMouseDown={() => props.onEntitySelection(null)}
     >
       {props.state.entities.map((entity) => (
         <EntitiesListItem
           key={entity.id}
           entity={entity}
-          onColorChange={props.onColorChange}
-          onShapeChange={props.onShapeChange}
-          onSetOpen={onSetOpen}
-          onHoverChanged={props.onHoverChanged}
+          onEntityColorChange={props.onEntityColorChange}
+          onEntityShapeChange={props.onEntityShapeChange}
+          onEntitySelection={props.onEntitySelection}
+          onEntityHover={props.onEntityHover}
           onDeleteEntity={props.onDeleteEntity}
           isSelected={props.state.selectedEntity === entity.id}
           isHighlighted={entity.id === props.state.highlightedEntity}

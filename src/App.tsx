@@ -9,15 +9,18 @@ import { HighlightContextProvider } from './common/HighlightContextProvider'
 export const App = () => {
   const {
     state,
-    setEntityColor,
-    setEntityPosition,
-    setEntityShape,
-    createEntity,
-    deleteEntity,
-    setHover,
-    setSelectedEntity,
-    setDebugHighlightActive,
-    setDebugStateVisible,
+    onEntityColorChange,
+    onEntityMove,
+    onEntityShapeChange,
+    onCreateEntity,
+    onDeleteEntity,
+    onEntityHover,
+    onEntitySelection,
+    onHighlightChange,
+    onStateVisibleChange,
+    onStateMaxDepthChange,
+    onShow3DChange,
+    onWobbleAllChange,
   } = useAppState()
   return (
     <HighlightContextProvider active={state.debug.highlightActive}>
@@ -33,26 +36,29 @@ export const App = () => {
         <Flex flex="1" width="100%" maxHeight="100%" minHeight="0">
           <SideBar
             state={state}
-            onColorChange={setEntityColor}
-            onShapeChange={setEntityShape}
-            onCreateEntity={createEntity}
-            onDeleteEntity={deleteEntity}
-            onHoverChanged={setHover}
-            onEntitySelected={setSelectedEntity}
+            onEntityColorChange={onEntityColorChange}
+            onEntityShapeChange={onEntityShapeChange}
+            onCreateEntity={onCreateEntity}
+            onDeleteEntity={onDeleteEntity}
+            onEntityHover={onEntityHover}
+            onEntitySelection={onEntitySelection}
           />
           <Box position="relative" flex="1">
             <Canvas
               state={state}
-              onHoverChanged={setHover}
-              setEntityPosition={setEntityPosition}
-              setSelectedEntity={setSelectedEntity}
+              onEntityHover={onEntityHover}
+              onEntityMove={onEntityMove}
+              onEntitySelection={onEntitySelection}
             />
           </Box>
         </Flex>
         <Footer
           state={state}
-          onHighlightChange={setDebugHighlightActive}
-          onStateVisibleChange={setDebugStateVisible}
+          onStateMaxDepthChange={onStateMaxDepthChange}
+          onHighlightChange={onHighlightChange}
+          onStateVisibleChange={onStateVisibleChange}
+          onShow3DChange={onShow3DChange}
+          onWobbleAllChange={onWobbleAllChange}
         />
       </MyBox>
     </HighlightContextProvider>

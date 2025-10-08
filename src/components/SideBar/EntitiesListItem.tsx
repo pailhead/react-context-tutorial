@@ -7,44 +7,41 @@ import { myMemo } from '../../common/myMemo'
 
 const EntitiesListItemInner = (props: {
   entity: EntityProps
-  onColorChange: (id: string, color: ColorType) => void
-  onShapeChange: (id: string, shape: Shape) => void
-  onSetOpen: (id: string | null) => void
+  onEntityColorChange: (id: string, color: ColorType) => void
+  onEntityShapeChange: (id: string, shape: Shape) => void
+  onEntitySelection: (id: string | null) => void
   onDeleteEntity: (id: string) => void
-  onHoverChanged: (id: string | null) => void
+  onEntityHover: (id: string | null) => void
   isHighlighted: boolean
   isSelected: boolean
 }) => {
-  const onClickHeader = () =>
-    props.onSetOpen(props.isSelected ? null : props.entity.id)
-
   return (
     <MyBox
       name="EntitiesListItem"
-      highlightColor="cyan"
-      highlightSize={3}
-      onMouseDown={(e) => {
-        e.stopPropagation()
-      }}
+      highlightColor="green"
+      highlightSize={8}
+      onMouseDown={(e) => e.stopPropagation()}
     >
       <EntityListItemHeader
         isSelected={props.isSelected}
         isHighlighted={props.isHighlighted}
         label={`Entity ${props.entity.id.substring(0, 2)}`}
-        onClick={onClickHeader}
+        onClick={() =>
+          props.onEntitySelection(props.isSelected ? null : props.entity.id)
+        }
         onClickDelete={() => {
-          if (props.isSelected) props.onSetOpen(null)
+          if (props.isSelected) props.onEntitySelection(null)
           props.onDeleteEntity(props.entity.id)
         }}
-        onMouseEnter={() => props.onHoverChanged(props.entity.id)}
-        onMouseLeave={() => props.onHoverChanged(null)}
+        onMouseEnter={() => props.onEntityHover(props.entity.id)}
+        onMouseLeave={() => props.onEntityHover(null)}
       />
       <Collapsible.Root open={props.isSelected}>
         <Collapsible.Content>
           <EntitiesListItemMenu
             entity={props.entity}
-            onColorChange={props.onColorChange}
-            onShapeChange={props.onShapeChange}
+            onEntityColorChange={props.onEntityColorChange}
+            onEntityShapeChange={props.onEntityShapeChange}
           />
         </Collapsible.Content>
       </Collapsible.Root>

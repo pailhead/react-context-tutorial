@@ -4,7 +4,7 @@ export const FooterCell = (props: { children: React.ReactNode }) => (
   <MyBox
     name="FooterCell"
     highlightColor="cyan"
-    highlightSize={3}
+    highlightSize={6}
     px="4"
     py="2"
     h="100%"

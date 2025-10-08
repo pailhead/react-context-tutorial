@@ -6,6 +6,7 @@ import { EntityProps, Vec2, Shape } from '../../types'
 
 const CanvasItemInner = (
   props: EntityProps & {
+    isVisible: boolean
     onEntityMove: (id: string, position: Vec2) => void
     setSelectedEntity: (id: string | null) => void
     onHoverChanged: (id: string | null) => void
@@ -32,19 +33,23 @@ const CanvasItemInner = (
       ref={ref}
       name="CanvasItem"
       highlightColor="cyan"
-      highlightSize={3}
+      highlightSize={2}
       alignItems="center"
       justifyContent="center"
-      width="50px"
+      width="100px"
+      height="100px"
       fontWeight="bold"
-      height="50px"
-      bg={bg}
+      bg={props.isVisible ? bg : 'transparent'}
       position="absolute"
       borderRadius={props.shape === Shape.Circle ? '50%' : '0'}
       left={`${props.position.x}px`}
       top={`${props.position.y}px`}
       onMouseDown={onMouseDown}
-      boxShadow={`0 0 10px ${props.isHighlighted ? 'cyan' : 'black'}`}
+      boxShadow={
+        props.isVisible
+          ? `0 0 10px ${props.isHighlighted ? 'cyan' : 'black'}`
+          : 'none'
+      }
       onMouseEnter={() => onHoverChanged(props.id)}
       onMouseLeave={() => onHoverChanged(null)}
       display="flex"

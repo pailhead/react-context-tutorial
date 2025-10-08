@@ -10,7 +10,7 @@ const ShapeControlsInner = (props: {
   <MyBox
     name="ShapeControls"
     highlightColor="magenta"
-    highlightSize={4}
+    highlightSize={2}
     w="100%"
     display="flex"
   >

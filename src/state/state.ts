@@ -10,6 +10,7 @@ export const DEFAULT_STATE: State = localState ?? {
   debug: {
     stateVisible: false,
     highlightActive: false,
+    stateViewMaxDepth: 4,
   },
 }
 

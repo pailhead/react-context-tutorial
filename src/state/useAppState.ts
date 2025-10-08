@@ -14,8 +14,7 @@ export const useAppState = () => {
     debouncedSaveState(state)
   }, [state])
 
-  //memoize these
-  const setEntityColor = (id: string, color: ColorType) =>
+  const onEntityColorChange = (id: string, color: ColorType) =>
     setState((prev) => ({
       ...prev,
       entities: prev.entities.map((entity) =>
@@ -23,7 +22,7 @@ export const useAppState = () => {
       ),
     }))
 
-  const setEntityPosition = (id: string, position: Vec2) =>
+  const onEntityMove = (id: string, position: Vec2) =>
     setState((prev) => ({
       ...prev,
       entities: prev.entities.map((entity) =>
@@ -31,7 +30,7 @@ export const useAppState = () => {
       ),
     }))
 
-  const setEntityShape = (id: string, shape: Shape) =>
+  const onEntityShapeChange = (id: string, shape: Shape) =>
     setState((prev) => ({
       ...prev,
       entities: prev.entities.map((entity) =>
@@ -39,63 +38,78 @@ export const useAppState = () => {
       ),
     }))
 
-  const createEntity = () => {
+  const onCreateEntity = () => {
     setState((prev) => ({
       ...prev,
       entities: [...prev.entities, createEntityProps()],
     }))
   }
 
-  const deleteEntity = (id: string) => {
+  const onDeleteEntity = (id: string) => {
     setState((prev) => ({
       ...prev,
       entities: prev.entities.filter((entity) => entity.id !== id),
     }))
   }
 
-  const setHover = (id: string | null) => {
+  const onEntityHover = (id: string | null) => {
     setState((prev) => ({
       ...prev,
       highlightedEntity: id,
     }))
   }
 
-  const setSelectedEntity = (id: string | null) => {
+  const onEntitySelection = (id: string | null) => {
     setState((prev) => ({
       ...prev,
       selectedEntity: id,
     }))
   }
 
-  const setDebugHighlightActive = (highlightActive: boolean) => {
+  const onHighlightChange = (highlightActive: boolean) => {
     setState((prev) => ({
       ...prev,
-      debug: {
-        ...prev.debug,
-        highlightActive,
-      },
+      debug: { ...prev.debug, highlightActive },
     }))
   }
-  const setDebugStateVisible = (stateVisible: boolean) => {
+  const onStateVisibleChange = (stateVisible: boolean) => {
     setState((prev) => ({
       ...prev,
-      debug: {
-        ...prev.debug,
-        stateVisible,
-      },
+      debug: { ...prev.debug, stateVisible },
+    }))
+  }
+  const onStateMaxDepthChange = (stateViewMaxDepth: number) => {
+    setState((prev) => ({
+      ...prev,
+      debug: { ...prev.debug, stateViewMaxDepth },
+    }))
+  }
+  const onShow3DChange = (show3D: boolean) => {
+    setState((prev) => ({
+      ...prev,
+      debug: { ...prev.debug, show3D },
+    }))
+  }
+  const onWobbleAllChange = (wobbleAll: boolean) => {
+    setState((prev) => ({
+      ...prev,
+      debug: { ...prev.debug, wobbleAll },
     }))
   }
 
   return {
     state,
-    setEntityColor,
-    setEntityPosition,
-    setEntityShape,
-    createEntity,
-    deleteEntity,
-    setHover,
-    setSelectedEntity,
-    setDebugHighlightActive,
-    setDebugStateVisible,
+    onEntityColorChange,
+    onEntityMove,
+    onEntityShapeChange,
+    onCreateEntity,
+    onDeleteEntity,
+    onEntityHover,
+    onEntitySelection,
+    onHighlightChange,
+    onStateVisibleChange,
+    onStateMaxDepthChange,
+    onShow3DChange,
+    onWobbleAllChange,
   }
 }

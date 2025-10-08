@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 
-const OFFSET = 5
+const OFFSET = 45
 export const CanvasItemCorner = (props: {
   upDown: 'up' | 'down'
   leftRight: 'left' | 'right'
@@ -24,26 +24,6 @@ export const CanvasItemCorner = (props: {
       borderBottom={props.upDown === 'down' ? '4px solid white' : undefined}
       borderLeft={props.leftRight === 'left' ? '4px solid white' : undefined}
       borderRight={props.leftRight === 'right' ? '4px solid white' : undefined}
-      borderTopLeftRadius={
-        props.round && props.upDown === 'up' && props.leftRight === 'left'
-          ? '100%'
-          : 0
-      }
-      borderTopRightRadius={
-        props.round && props.upDown === 'up' && props.leftRight === 'right'
-          ? '100%'
-          : 0
-      }
-      borderBottomLeftRadius={
-        props.round && props.upDown === 'down' && props.leftRight === 'left'
-          ? '100%'
-          : 0
-      }
-      borderBottomRightRadius={
-        props.round && props.upDown === 'down' && props.leftRight === 'right'
-          ? '100%'
-          : 0
-      }
     />
   </Box>
 )
