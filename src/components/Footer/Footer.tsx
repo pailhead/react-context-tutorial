@@ -1,5 +1,3 @@
-import { Flex } from '@chakra-ui/react'
-
 import { SwitchWithLabel } from './SwitchWithLabel'
 import { FooterCell } from './FooterCell'
 
@@ -53,4 +51,4 @@ const FooterInner = (props: {
   )
 }
 FooterInner.displayName = 'Footer'
-export const Footer = myMemo(FooterInner, true)
+export const Footer = myMemo(FooterInner)

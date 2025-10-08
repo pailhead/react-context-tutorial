@@ -8,7 +8,8 @@ export const FooterCell = (props: { children: React.ReactNode }) => (
     px="4"
     py="2"
     h="100%"
-    _notLast={{ borderRight: '1px solid', borderColor: 'gray.900' }}
+    borderRight="1px solid"
+    borderColor="gray.900"
   >
     {props.children}
   </MyBox>
