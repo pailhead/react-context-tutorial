@@ -8,7 +8,11 @@ export const useSelector = <T>(
 ): T => {
   const [value, setValue] = useState<T>(selector(store.getState()))
   const prevValueRef = useRef(value)
+
   const stableRef = useRef({ selector, eqFn })
+  stableRef.current.selector = selector
+  stableRef.current.eqFn = eqFn
+
   useEffect(() => {
     const selector = stableRef.current.selector
     const eqFn = stableRef.current.eqFn
