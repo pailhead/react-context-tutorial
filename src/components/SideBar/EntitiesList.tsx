@@ -1,5 +1,3 @@
-import { useCallback } from 'react'
-
 import { EntitiesListItem } from './EntitiesListItem'
 
 import { ColorType, Shape, State } from '../../types'
@@ -14,21 +12,14 @@ const EntitiesListInner = (props: {
   onHoverChanged: (id: string | null) => void
   onEntitySelected: (id: string | null) => void
 }) => {
-  const { onEntitySelected } = props
-  const onSetOpen = useCallback(
-    (id: string | null) => onEntitySelected(id),
-    [onEntitySelected],
-  )
   return (
     <MyBox
       name="EntitiesList"
       highlightColor="cyan"
-      highlightSize={3}
+      highlightSize={6}
       overflowY="auto"
       flexGrow="1"
-      onMouseDown={() => {
-        props.onEntitySelected(null)
-      }}
+      onMouseDown={() => props.onEntitySelected(null)}
     >
       {props.state.entities.map((entity) => (
         <EntitiesListItem
@@ -36,7 +27,7 @@ const EntitiesListInner = (props: {
           entity={entity}
           onColorChange={props.onColorChange}
           onShapeChange={props.onShapeChange}
-          onSetOpen={onSetOpen}
+          onEntitySelected={props.onEntitySelected}
           onHoverChanged={props.onHoverChanged}
           onDeleteEntity={props.onDeleteEntity}
           isSelected={props.state.selectedEntity === entity.id}

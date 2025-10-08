@@ -14,7 +14,7 @@ export const ColorPickerInner = (props: {
     <MyBox
       name="ColorPicker"
       highlightColor="magenta"
-      highlightSize={4}
+      highlightSize={2}
       position="relative"
       w="100%"
     >

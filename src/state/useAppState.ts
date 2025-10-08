@@ -14,7 +14,6 @@ export const useAppState = () => {
     debouncedSaveState(state)
   }, [state])
 
-  //memoize these
   const setEntityColor = (id: string, color: ColorType) =>
     setState((prev) => ({
       ...prev,
@@ -70,19 +69,31 @@ export const useAppState = () => {
   const setDebugHighlightActive = (highlightActive: boolean) => {
     setState((prev) => ({
       ...prev,
-      debug: {
-        ...prev.debug,
-        highlightActive,
-      },
+      debug: { ...prev.debug, highlightActive },
     }))
   }
   const setDebugStateVisible = (stateVisible: boolean) => {
     setState((prev) => ({
       ...prev,
-      debug: {
-        ...prev.debug,
-        stateVisible,
-      },
+      debug: { ...prev.debug, stateVisible },
+    }))
+  }
+  const setDebugStateViewMaxDepth = (stateViewMaxDepth: number) => {
+    setState((prev) => ({
+      ...prev,
+      debug: { ...prev.debug, stateViewMaxDepth },
+    }))
+  }
+  const setDebugShow3D = (show3D: boolean) => {
+    setState((prev) => ({
+      ...prev,
+      debug: { ...prev.debug, show3D },
+    }))
+  }
+  const setDebugWobbleAll = (wobbleAll: boolean) => {
+    setState((prev) => ({
+      ...prev,
+      debug: { ...prev.debug, wobbleAll },
     }))
   }
 
@@ -97,5 +108,8 @@ export const useAppState = () => {
     setSelectedEntity,
     setDebugHighlightActive,
     setDebugStateVisible,
+    setDebugStateViewMaxDepth,
+    setDebugShow3D,
+    setDebugWobbleAll,
   }
 }

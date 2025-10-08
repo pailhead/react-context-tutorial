@@ -5,14 +5,24 @@ import React from 'react'
 import { keyframes } from '@emotion/react'
 
 const fadeOut = keyframes`
-  from { color: red; }
-  to   { color: white; }
+  from { color: red;  background: rgba(255,0,0,0.03); }
+  to   { color: white; background: transparent;  }
 `
 
 export const StateViewer = (props: { state: State }) => {
   return (
-    <Box>
-      <ObjectViewer obj={props.state} maxDepth={2} />
+    <Box
+      maxH="100%"
+      display="inline-block"
+      overflow="auto"
+      p="4"
+      onMouseDown={(e) => e.stopPropagation()}
+      scrollbarWidth="none"
+    >
+      <ObjectViewer
+        obj={props.state}
+        maxDepth={props.state.debug.stateViewMaxDepth}
+      />
     </Box>
   )
 }

@@ -18,6 +18,9 @@ export const App = () => {
     setSelectedEntity,
     setDebugHighlightActive,
     setDebugStateVisible,
+    setDebugStateViewMaxDepth,
+    setDebugShow3D,
+    setDebugWobbleAll,
   } = useAppState()
   return (
     <HighlightContextProvider active={state.debug.highlightActive}>
@@ -51,8 +54,11 @@ export const App = () => {
         </Flex>
         <Footer
           state={state}
+          onStateMaxDepthChange={setDebugStateViewMaxDepth}
           onHighlightChange={setDebugHighlightActive}
           onStateVisibleChange={setDebugStateVisible}
+          onShow3DChange={setDebugShow3D}
+          onWobbleAllChange={setDebugWobbleAll}
         />
       </MyBox>
     </HighlightContextProvider>

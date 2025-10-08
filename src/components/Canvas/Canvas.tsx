@@ -4,6 +4,7 @@ import { MyBox } from '../../common/MyBox'
 import { StateViewer } from '../../common/StateView'
 import { CanvasItem } from './CanvasItem'
 import { myMemo } from '../../common/myMemo'
+import { ThreeCanvas } from './three/ThreeCanvas'
 
 const CanvasInner = (props: {
   state: State
@@ -15,7 +16,7 @@ const CanvasInner = (props: {
     <MyBox
       name="Canvas"
       highlightColor="yellow"
-      highlightSize={2}
+      highlightSize={4}
       boxShadow="inset 0 0 10px black"
       position="relative"
       width="100%"
@@ -24,11 +25,19 @@ const CanvasInner = (props: {
       userSelect="none"
       onMouseDown={() => props.setSelectedEntity(null)}
     >
+      {props.state.debug.show3D && (
+        <ThreeCanvas
+          entities={props.state.entities}
+          highlightedEntity={props.state.highlightedEntity}
+          wobbleAll={props.state.debug.wobbleAll}
+        />
+      )}
       <Box position="absolute" top="50%" left="50%">
         {props.state.entities.map((entity) => (
           <CanvasItem
             key={entity.id}
             {...entity}
+            isVisible={!props.state.debug.show3D}
             onEntityMove={props.setEntityPosition}
             setSelectedEntity={props.setSelectedEntity}
             onHoverChanged={props.onHoverChanged}
@@ -43,4 +52,4 @@ const CanvasInner = (props: {
 }
 CanvasInner.displayName = 'Canvas'
 
-export const Canvas = myMemo(CanvasInner, false)
+export const Canvas = myMemo(CanvasInner, true)

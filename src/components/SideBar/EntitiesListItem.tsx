@@ -9,31 +9,28 @@ const EntitiesListItemInner = (props: {
   entity: EntityProps
   onColorChange: (id: string, color: ColorType) => void
   onShapeChange: (id: string, shape: Shape) => void
-  onSetOpen: (id: string | null) => void
+  onEntitySelected: (id: string | null) => void
   onDeleteEntity: (id: string) => void
   onHoverChanged: (id: string | null) => void
   isHighlighted: boolean
   isSelected: boolean
 }) => {
-  const onClickHeader = () =>
-    props.onSetOpen(props.isSelected ? null : props.entity.id)
-
   return (
     <MyBox
       name="EntitiesListItem"
-      highlightColor="cyan"
-      highlightSize={3}
-      onMouseDown={(e) => {
-        e.stopPropagation()
-      }}
+      highlightColor="green"
+      highlightSize={8}
+      onMouseDown={(e) => e.stopPropagation()}
     >
       <EntityListItemHeader
         isSelected={props.isSelected}
         isHighlighted={props.isHighlighted}
         label={`Entity ${props.entity.id.substring(0, 2)}`}
-        onClick={onClickHeader}
+        onClick={() =>
+          props.onEntitySelected(props.isSelected ? null : props.entity.id)
+        }
         onClickDelete={() => {
-          if (props.isSelected) props.onSetOpen(null)
+          if (props.isSelected) props.onEntitySelected(null)
           props.onDeleteEntity(props.entity.id)
         }}
         onMouseEnter={() => props.onHoverChanged(props.entity.id)}
