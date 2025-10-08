@@ -34,5 +34,7 @@ export const EntitiesListItemMenuInner = (props: {
     </VStack>
   )
 }
-export const EntitiesListItemMenu = myMemo(EntitiesListItemMenuInner, true)
-EntitiesListItemMenu.displayName = 'EntitiesListItemMenu'
+
+EntitiesListItemMenuInner.displayName = 'EntitiesListItemMenu'
+
+export const EntitiesListItemMenu = myMemo(EntitiesListItemMenuInner, false)

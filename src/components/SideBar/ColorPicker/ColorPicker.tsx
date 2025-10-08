@@ -6,7 +6,7 @@ import { Sliders } from './Sliders'
 import { MyBox } from '../../../common/MyBox'
 import { myMemo } from '../../../common/myMemo'
 
-export const ColorPicker2 = (props: {
+export const ColorPickerInner = (props: {
   rgb: ColorType
   onChange: (color: ColorType) => void
 }) => {
@@ -30,4 +30,5 @@ export const ColorPicker2 = (props: {
     </MyBox>
   )
 }
-export const ColorPicker = myMemo(ColorPicker2, true)
+ColorPickerInner.displayName = 'ColorPicker'
+export const ColorPicker = myMemo(ColorPickerInner, false)

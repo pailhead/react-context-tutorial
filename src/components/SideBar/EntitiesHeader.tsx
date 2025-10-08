@@ -31,5 +31,5 @@ const EntitiesHeaderInner = (props: {
     </Icon>
   </MyBox>
 )
-
-export const EntitiesHeader = myMemo(EntitiesHeaderInner, true)
+EntitiesHeaderInner.displayName = 'EntitiesHeader'
+export const EntitiesHeader = myMemo(EntitiesHeaderInner, false)

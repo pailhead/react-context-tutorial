@@ -59,7 +59,7 @@ const CanvasItemInner = (
 }
 CanvasItemInner.displayName = 'CanvasItem'
 
-export const CanvasItem = myMemo(CanvasItemInner, true)
+export const CanvasItem = myMemo(CanvasItemInner, false)
 
 const useMouseDown = (
   id: string,

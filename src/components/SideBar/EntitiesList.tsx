@@ -47,4 +47,4 @@ const EntitiesListInner = (props: {
   )
 }
 EntitiesListInner.displayName = 'EntitiesList'
-export const EntitiesList = myMemo(EntitiesListInner, true)
+export const EntitiesList = myMemo(EntitiesListInner, false)
