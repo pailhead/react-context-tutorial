@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import { MyBox } from '../../common/MyBox'
 
 export const FooterCell = (props: { children: React.ReactNode }) => (

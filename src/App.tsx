@@ -49,11 +49,7 @@ export const App = () => {
             />
           </Box>
         </Flex>
-        <Footer
-          state={state}
-          onHighlightChange={setDebugHighlightActive}
-          onStateVisibleChange={setDebugStateVisible}
-        />
+        <Footer />
       </MyBox>
     </HighlightContextProvider>
   )

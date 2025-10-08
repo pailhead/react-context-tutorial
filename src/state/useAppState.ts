@@ -3,16 +3,12 @@ import { State, ColorType, Vec2, Shape } from '../types'
 import debounce from 'debounce'
 import { createEntityProps, DEFAULT_STATE } from './state'
 
-const localState = JSON.parse(
-  localStorage.getItem('context-playground-state') ?? null,
-)
-
 const debouncedSaveState = debounce((state: State) => {
   localStorage.setItem('context-playground-state', JSON.stringify(state))
 }, 300)
 
 export const useAppState = () => {
-  const [state, setState] = useState<State>(localState ?? DEFAULT_STATE)
+  const [state, setState] = useState<State>(DEFAULT_STATE)
 
   useEffect(() => {
     debouncedSaveState(state)

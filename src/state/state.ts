@@ -1,6 +1,9 @@
 import { EntityProps, Shape, State } from '../types'
 
-export const DEFAULT_STATE: State = {
+const localState = JSON.parse(
+  localStorage.getItem('context-playground-state') ?? null,
+)
+export const DEFAULT_STATE: State = localState ?? {
   entities: [],
   highlightedEntity: null,
   selectedEntity: null,

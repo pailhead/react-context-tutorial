@@ -34,7 +34,6 @@ export const MyBox = forwardRef<HTMLDivElement, PropsWithChildren<Props>>(
           inset={0}
           pointerEvents="none"
           boxShadow={`inset 0 0 0px ${props.highlightSize ?? 2}px ${props.highlightColor ?? 'red'}`}
-          // backgroundColor={props.highlightColor ?? 'red'}
           animation={`${fadeOut} 1s ease-out forwards`}
           borderRadius="inherit"
           zIndex={1}

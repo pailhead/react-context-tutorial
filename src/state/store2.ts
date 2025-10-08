@@ -1,21 +1,6 @@
 import EventEmitter from 'eventemitter3'
-import { DEFAULT_STATE } from './state'
+import { createEntityProps, DEFAULT_STATE } from './state'
 import { Shape, State, ColorType, Vec2 } from '../types'
-
-const _createEntity = () => ({
-  id: crypto.randomUUID(),
-  position: {
-    x: (Math.random() * 2 - 1) * 300,
-    y: (Math.random() * 2 - 1) * 300,
-  },
-  color: {
-    r: Math.round(Math.random() * 255),
-    g: Math.round(Math.random() * 255),
-    b: Math.round(Math.random() * 255),
-  },
-  isMoving: false,
-  shape: Math.random() > 0.5 ? Shape.Circle : Shape.Square,
-})
 
 class Store2 extends EventEmitter {
   private _state: State = DEFAULT_STATE
@@ -57,7 +42,7 @@ class Store2 extends EventEmitter {
   createEntity = () => {
     this._setState((prev) => ({
       ...prev,
-      entities: [...prev.entities, _createEntity()],
+      entities: [...prev.entities, createEntityProps()],
     }))
   }
 
