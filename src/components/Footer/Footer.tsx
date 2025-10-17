@@ -73,4 +73,4 @@ const FooterInner = (props: {
   )
 }
 FooterInner.displayName = 'Footer'
-export const Footer = myMemo(FooterInner, false)
+export const Footer = myMemo(FooterInner, true)

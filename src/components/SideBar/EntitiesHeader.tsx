@@ -34,4 +34,4 @@ const EntitiesHeaderInner = (props: {
   )
 }
 EntitiesHeaderInner.displayName = 'EntitiesHeader'
-export const EntitiesHeader = myMemo(EntitiesHeaderInner, false)
+export const EntitiesHeader = myMemo(EntitiesHeaderInner, true)

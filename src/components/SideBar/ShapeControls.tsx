@@ -30,4 +30,4 @@ const ShapeControlsInner = (props: {
 )
 ShapeControlsInner.displayName = 'ShapeControls'
 
-export const ShapeControls = myMemo(ShapeControlsInner, false)
+export const ShapeControls = myMemo(ShapeControlsInner, true)

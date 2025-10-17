@@ -52,4 +52,4 @@ const CanvasInner = (props: {
 }
 CanvasInner.displayName = 'Canvas'
 
-export const Canvas = myMemo(CanvasInner, false)
+export const Canvas = myMemo(CanvasInner, true)

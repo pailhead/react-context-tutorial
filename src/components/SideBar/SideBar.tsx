@@ -33,4 +33,4 @@ const SideBarInner = (props: {
 
 SideBarInner.displayName = 'SideBar'
 
-export const SideBar = myMemo(SideBarInner, false)
+export const SideBar = myMemo(SideBarInner, true)

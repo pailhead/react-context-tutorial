@@ -31,4 +31,4 @@ export const ColorPickerInner = (props: {
   )
 }
 ColorPickerInner.displayName = 'ColorPicker'
-export const ColorPicker = myMemo(ColorPickerInner, false)
+export const ColorPicker = myMemo(ColorPickerInner, true)
